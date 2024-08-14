@@ -53,6 +53,18 @@ mod tests {
     }
 
     #[test]
+    fn proves_plus() {
+        let a = 1;
+        let env = ExecutorEnv::builder().write(&a).unwrap().build().unwrap();
+        let receipt = default_executor().execute(env, super::PLUS_ELF).unwrap();
+
+        let result = U256::abi_decode(&receipt.journal.bytes, true).unwrap();
+        println!("Resulting number: {}", &result);
+        let expected = U256::from(a) + U256::from(1);
+        assert_eq!(expected, result);
+    }
+
+    #[test]
     fn proves_hash() {
         let base_str = "test";
         let hash = multi_round_hash(&base_str.abi_encode(), 10000);

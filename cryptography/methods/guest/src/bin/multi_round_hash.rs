@@ -22,19 +22,12 @@ fn main() {
     // Read the input data for this application.
     let mut input_data = Vec::<u8>::new();
     env::stdin().read_to_end(&mut input_data).unwrap();
-    println!("round data: {}", input_data.len());
-    let hash = multi_round_hash(&input_data, 10000);
-    println!("round hash: {}", &hash);
-    env::commit_slice(&hash.abi_encode().as_slice());
-}
-
-fn multi_round_hash(input: &[u8], rounds: u32) -> String {
     let mut hasher = Sha256::new();
-    let mut data = input.to_vec();
-    println!("input data len: {}", data.len());
-    for _ in 0..rounds {
+    let mut data = input_data.to_vec();
+    for _ in 0..10000 {
         hasher.update(&data);
         data = hasher.finalize_reset().to_vec();
     }
-    hex::encode(data)
+    let hash = hex::encode(data);
+    env::commit_slice(&hash.abi_encode().as_slice());
 }

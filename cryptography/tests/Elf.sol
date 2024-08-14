@@ -23,4 +23,6 @@ library Elf {
         "/Users/zhouzibo/Workspaces/risc-zero-workspace/risc0-examples/cryptography/target/riscv-guest/riscv32im-risc0-zkvm-elf/release/is-even";
     string public constant MULTI_ROUND_HASH_PATH =
         "/Users/zhouzibo/Workspaces/risc-zero-workspace/risc0-examples/cryptography/target/riscv-guest/riscv32im-risc0-zkvm-elf/release/multi_round_hash";
+    string public constant PLUS_PATH =
+        "/Users/zhouzibo/Workspaces/risc-zero-workspace/risc0-examples/cryptography/target/riscv-guest/riscv32im-risc0-zkvm-elf/release/plus";
 }
